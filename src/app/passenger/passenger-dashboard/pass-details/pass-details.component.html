@@ -1,0 +1,26 @@
+<div class="card mb-4 info1">
+    <div class="card-body">
+
+        <input type="text" [value]="passObj.fullname" #fullName [disabled]="!isEditabel" class="form-control mb-2">
+        <p>        
+            <!-- Check in date : {{passObj.checkInDate ? (passObj.checkInDate | date): "Not Checked In"}}  -->
+            Check in date : {{(passObj.checkInDate | date) ?? "Not Checked In"}}
+        </p>
+        <p>
+            <!-- children : {{passObj.children ? passObj.children.length : 0}} -->
+            children : {{ passObj.children?.length ?? 0}}
+        </p>
+
+        <button class="mx-2"
+         mat-raised-button color="primary"
+         *ngIf="!isEditabel" (click)="isEditabel = !isEditabel">Edit</button>
+
+        <button class="mx-2" 
+        mat-raised-button color="accent"
+        *ngIf="isEditabel" (click)="onDone(fullName.value)">Done</button>
+
+        <button 
+        mat-raised-button color="warn" class="mx-2" (click)="onRemove()">Remove</button>
+
+    </div>
+</div>
